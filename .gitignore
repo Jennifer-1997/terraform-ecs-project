@@ -14,6 +14,8 @@ crash.*.log
 # Environment / secrets
 .env
 .env.*
+# SSH private keys
+*.pem
 
 # IDE
 .vscode/
