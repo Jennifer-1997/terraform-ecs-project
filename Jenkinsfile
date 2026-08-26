@@ -30,7 +30,7 @@ pipeline {
                 sh '''
                     echo "Building Docker image..."
                     docker build \
-                      -f docker/docker/Dockerfile \
+                      -f docker/Dockerfile \
                       -t ${IMAGE_URI} \
                       .
                 '''
