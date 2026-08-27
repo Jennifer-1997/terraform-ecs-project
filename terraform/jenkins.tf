@@ -1,7 +1,7 @@
 resource "aws_security_group" "jenkins" {
   name        = "ecs-project-jenkins-sg"
   description = "Security group for Jenkins server"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = module.network.vpc_id
 
   ingress {
     description = "Jenkins UI"
@@ -130,7 +130,7 @@ resource "aws_instance" "jenkins" {
   ami           = "ami-07e5ce642bbc48c0d"
   instance_type = "t3.medium"
 
-  subnet_id = aws_subnet.public_a.id
+  subnet_id = module.network.public_subnet_ids[0]
 
   vpc_security_group_ids = [
     aws_security_group.jenkins.id

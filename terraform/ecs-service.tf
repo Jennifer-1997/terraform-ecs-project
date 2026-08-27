@@ -7,10 +7,16 @@ resource "aws_ecs_service" "app" {
 
   launch_type = "FARGATE"
 
+  lifecycle {
+  ignore_changes = [
+    task_definition
+  ]
+}
+
   network_configuration {
     subnets = [
-      aws_subnet.private_a.id,
-      aws_subnet.private_b.id
+      module.network.private_subnet_ids[0],
+      module.network.private_subnet_ids[1]
     ]
 
     security_groups = [

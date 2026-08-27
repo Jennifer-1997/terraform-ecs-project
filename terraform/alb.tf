@@ -8,8 +8,8 @@ resource "aws_lb" "app" {
   ]
 
   subnets = [
-    aws_subnet.public_a.id,
-    aws_subnet.public_b.id
+    module.network.public_subnet_ids[0],
+    module.network.public_subnet_ids[1]
   ]
 
   tags = {
@@ -24,7 +24,7 @@ resource "aws_lb_target_group" "app" {
   port        = 8080
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = module.network.vpc_id
 
   health_check {
     path                = "/health"

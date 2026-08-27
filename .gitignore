@@ -27,3 +27,5 @@ Thumbs.db
 
 # Logs
 *.log
+# Local Terraform backup
+terraform-backup/

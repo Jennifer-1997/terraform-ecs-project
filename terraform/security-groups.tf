@@ -1,7 +1,7 @@
 resource "aws_security_group" "alb" {
   name        = "ecs-project-alb-sg"
   description = "Security group for the ECS Application Load Balancer"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = module.network.vpc_id
 
   ingress {
     description = "Allow HTTP from the internet"
@@ -35,7 +35,7 @@ resource "aws_security_group" "alb" {
 resource "aws_security_group" "ecs" {
   name        = "ecs-project-ecs-sg"
   description = "Security group for ECS Fargate tasks"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = module.network.vpc_id
 
   ingress {
     description     = "Allow application traffic from the ALB"
